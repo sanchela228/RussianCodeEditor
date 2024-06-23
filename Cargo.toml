@@ -1,0 +1,9 @@
+[package]
+name = "RussianCodeEditor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+raylib = "5.0.1"
+rfd = "0.14.1"
+#winit = "0.30.3"
