@@ -165,20 +165,7 @@ fn main()
         // Color::new(60, 63, 65, 255) color head of the editor
         // Color::new(43, 45, 48, 255) main color of the editor
 
-        draw_horizontal_gradient(&mut d, 70, 3, 110, 40,
-                                 Color::new(60, 63, 65, 255),
-                               Color::new(200,200,200, 25));
 
-        draw_horizontal_gradient(&mut d, 180, 3, 100, 40,
-                                 Color::new(200,200,200, 25),
-                                 Color::new(65,105,225, 25));
-
-        draw_horizontal_gradient(&mut d, 280, 3, 150, 40,
-                                 Color::new(65,105,225, 25),
-                                 Color::new(178,34,34, 25));
-        draw_horizontal_gradient(&mut d, 430, 3, 170, 40,
-                                 Color::new(178,34,34, 25),
-                                 Color::new(60, 63, 65, 255));
 
         d.draw_text(&format!("FPS: {}", fps), 380, 10, 20, Color::BLACK);
         d.draw_text_ex(&font, text, text_position, text_size as f32, 2.0, Color::BLACK);
@@ -233,70 +220,5 @@ fn main()
 
         // draw_rounded_rectangle(&mut d, 113, 113, 200,
         //                        200, 10, Color::BLUE);
-    }
-}
-
-
-
-fn draw_rounded_rectangle(d: &mut RaylibDrawHandle, x: i32, y: i32, width: i32, height: i32, radius: i32, color: Color)
-{
-    let color_head = Color::new(60, 63, 65, 255);
-
-    d.draw_rectangle(x + radius, y, width - 2 * radius, height, color);
-    d.draw_rectangle(x, y + radius, width, height - 2 * radius, color);
-
-    d.draw_circle(x + radius, y + radius, radius as f32, color_head);
-    d.draw_circle(x + width - radius, y + radius, radius as f32, color_head);
-    d.draw_circle(x + radius, y + height - radius, radius as f32, color);
-    d.draw_circle(x + width - radius, y + height - radius, radius as f32, color);
-
-    d.draw_rectangle(x + radius, y, width - 2 * radius, radius, color_head);
-
-    d.draw_rectangle(x + radius, y + height - radius, width - 2 * radius, radius, color);
-    d.draw_rectangle(x, y + radius, radius, height - 2 * radius, color);
-    d.draw_rectangle(x + width - radius, y + radius, radius, height - 2 * radius, color);
-
-    d.draw_rectangle(x, y + radius, width, 30, color_head);
-}
-
-fn draw_vertical_gradient(
-    d: &mut RaylibDrawHandle,
-    start_x: i32,
-    start_y: i32,
-    width: i32,
-    height: i32,
-    top_color: Color,
-    bottom_color: Color,
-) {
-    for i in 0..height {
-        let ratio = i as f32 / height as f32;
-        let color = Color {
-            r: (top_color.r as f32 * (1.0 - ratio) + bottom_color.r as f32 * ratio) as u8,
-            g: (top_color.g as f32 * (1.0 - ratio) + bottom_color.g as f32 * ratio) as u8,
-            b: (top_color.b as f32 * (1.0 - ratio) + bottom_color.b as f32 * ratio) as u8,
-            a: 255,
-        };
-        d.draw_rectangle(start_x, start_y + i, width, 1, color);
-    }
-}
-
-fn draw_horizontal_gradient(
-    d: &mut RaylibDrawHandle,
-    start_x: i32,
-    start_y: i32,
-    width: i32,
-    height: i32,
-    left_color: Color,
-    right_color: Color
-) {
-    for i in 0..width {
-        let ratio = i as f32 / width as f32;
-        let color = Color {
-            r: (left_color.r as f32 * (1.0 - ratio) + right_color.r as f32 * ratio) as u8,
-            g: (left_color.g as f32 * (1.0 - ratio) + right_color.g as f32 * ratio) as u8,
-            b: (left_color.b as f32 * (1.0 - ratio) + right_color.b as f32 * ratio) as u8,
-            a: 255,
-        };
-        d.draw_rectangle(start_x + i, start_y, 1, height, color);
     }
 }
