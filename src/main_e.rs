@@ -20,6 +20,9 @@ fn main()
     // main loop
     while !rl.window_should_close()
     {
+        let WUNDOW_WUDTH = rl.get_screen_width();
+        let WUNDOW_HEIGHT = rl.get_screen_height();
+
         if editor.files.len() == 0
         {
             editor.open_file_dialog();
